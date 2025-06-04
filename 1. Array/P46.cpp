@@ -5,47 +5,31 @@ You are also given an integer B, find if there exists a pair of elements in the 
 Return 1 if any such pair exists else return 0.*/
 
 #include<iostream>
-#include<vector>
-
+#include<math.h>
 using namespace std;
-bool solve(int* arr, int n, int B) {
-  int i,j;
-  for(i=0;i<n;i++){
-    int index=i;
-    for(j=i+1;j<n;j++){
-      if(arr[j]<arr[index]){
-        index=j;
-      }
+
+int diff(int* arr,int n,int target){
+  for(int i=0;i<n;i++){
+    for(int j=i+1;j<n;j++){
+      if(arr[i]-arr[j]==target || arr[j]-arr[i]==target)
+      return 1;
     }
-    int temp=arr[i];
-    arr[i]=arr[index];
-    arr[index]=temp;
-  }
-  int start=0,end=1;
-  while(start<n && end<n){
-    if(arr[end]-arr[start]==B)
-    return 1;
-    else if(arr[end]-arr[start]>B)
-    start++;
-    else
-    end++;
-    if(start==end)
-    end++;
   }
   return 0;
 }
 
 int main(){
-  int n,B;
-  cout<<"Enter number of elements in the array: ";
+  int n;
+  cout<<"Enter the number of elements in the array:\n";
   cin>>n;
-  int arr[n];
+  int arr[1000];
   cout<<"Enter elements in the array:\n";
   for(int i=0;i<n;i++){
     cin>>arr[i];
   }
-  cout<<"Enter Targeted sum: ";
-  cin>>B;
-  bool result=solve(arr,n,B);
-  cout<<boolalpha<<result<<endl;
+  int target;
+  cout<<"Enter Targeted element:\n";
+  cin>>target;
+  int result=diff(arr,n,target);
+  cout<<result<<endl;
 }
