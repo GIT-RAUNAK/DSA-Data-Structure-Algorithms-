@@ -34,5 +34,5 @@ int main(){
 
   int result=maxRow(matrix);
 
-  cout<<"Row with maximum 1 is "<<result<<endl;
+  cout<<"Row with maximum 1 is "<<result;
 }
